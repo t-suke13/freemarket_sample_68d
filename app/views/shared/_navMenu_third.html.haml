@@ -1,0 +1,4 @@
+%li.header__navContentThird
+  = link_to "#{child_category.name}", '#'
+  %ul.header__navMenuForth
+    = render partial: "shared/navMenu_forth", collection: child_category.children, as: "grandchild_category"

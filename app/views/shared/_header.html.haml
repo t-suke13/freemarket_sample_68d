@@ -16,49 +16,7 @@
           = link_to "カテゴリー", '#'
 
           %ul.header__navMenuSecond
-            %li.header__navContentSecond
-              = link_to "レディース", '#'
-
-              %ul.header__navMenuThird
-                %li.header__navContentThird
-                  = link_to "トップス", '#'
-
-                  %ul.header__navMenuForth
-                    %li.header__navContentForth
-                      = link_to "Tシャツ/カットソー(半袖/袖なし)"
-                    %li.header__navContentForth
-                      = link_to "Tシャツ/カットソー(七分/長袖)"
-
-                %li.header__navContentThird
-                  = link_to "ジャケット/アウター", '#'
-
-                  %ul.header__navMenuForth
-                    %li.header__navContentForth
-                      = link_to "テーラードジャケット", '#'
-                    %li.header__navContentForth
-                      = link_to "ノーカラージャケット", '#'
-
-            %li.header__navContentSecond
-              = link_to "メンズ", '#'
-
-              %ul.header__navMenuThird
-                %li.header__navContentThird
-                  = link_to "トップス", '#'
-
-                  %ul.header__navMenuForth
-                    %li.header__navContentForth
-                      = link_to "Tシャツ/カットソー(半袖/袖なし)"
-                    %li.header__navContentForth
-                      = link_to "Tシャツ/カットソー(七分/長袖)", '#'
-
-                %li.header__navContentThird
-                  = link_to "ジャケット/アウター", '#'
-
-                  %ul.header__navMenuForth
-                    %li.header__navContentForth
-                      = link_to "テーラードジャケット", '#'
-                    %li.header__navContentForth
-                      = link_to "ノーカラージャケット", '#'
+            = render partial: "shared/navMenu_second", collection: @parent_categories, as: "parent_category"
 
         %li.header__navContent
           = link_to "ブランド", '#'

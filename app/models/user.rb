@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
 
   has_many :items
   has_many :orders
@@ -25,7 +25,7 @@ class User < ApplicationRecord
             }
   validates :first_furigana, :last_furigana, presence: true,
             format: {
-              with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
+              with: /\A[\p{katakana}ー－&&[^ -~｡-ﾟ]]+\z/,
               message: "は全角カタカナのみで入力して下さい。"
             }
 end

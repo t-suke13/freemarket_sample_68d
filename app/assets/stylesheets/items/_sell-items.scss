@@ -69,86 +69,6 @@
             line-height: 1.4em;
             color: $sub-font;
           }
-
-          &__upload-box {
-            margin-top: 16px;
-            display: block !important;
-
-            &__upload-container {
-              display: flex;
-              flex-wrap: wrap;
-              margin: -8px -4px 0px;
-
-              &__si-inner-box {
-                height: 150px;
-                margin-top: 8px;
-                flex: 1 1 0%;
-                padding: 0px 4px;
-
-                &__si-inner-container {
-                  align-content: center;
-                  -webkit-box-align: center;
-                  align-items: center;
-                  background-color: rgb(245, 245, 245);
-                  cursor: pointer;
-                  display: flex;
-                  height: 100%;
-                  flex-wrap: wrap;
-                  -webkit-box-pack: center;
-                  justify-content: center;
-                  position: relative;
-                  border-width: 1px;
-                  border-style: dashed;
-                  border-color: rgb(204, 204, 204);
-                  border-image: initial;
-                  transition: all 0.5s ease-out 0s;
-
-                  #drop-zone {
-                    width: 100%;
-                    height: 100%;
-                  }
-
-                  label.image-label {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 100%;
-                    height: 100%;
-
-                    .hidden-filed {
-                      display: none;
-                    }
-
-                    .si-big-box {
-                      &__si-icon-box {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-
-                        img.camera-icon {
-                          fill: rgb(34, 34, 34);
-                          height: 24px;
-                          margin-bottom: 8px;
-                          width: 24px;     
-                          filter: brightness(0%);    
-                        }
-                      }
-
-                      &__si-text-box {
-                        p.drag-drop {
-                          color: $sub-font;
-                          font-size: 12px;
-                          line-height: 1.4em;
-                          text-align: center;
-                          width: 100%;
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
         }
       }
       .input-default {
@@ -284,9 +204,7 @@
             font-weight: bold;
           }
         }
-        .none {
-          display: none;
-        }
+
         .l-right {
           font-size: 14px;
           color: $sub-font;
@@ -362,6 +280,98 @@
         transition: all ease-out .3s;
         cursor: pointer;
         text-align: center;
+      }
+    }
+  }
+
+  .post__drop__box__container{
+    display: block;
+    margin: 16px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+  
+    //プレビュー表示欄のCSS
+    .preview-box {
+      height: 162px;
+      width: 112px;
+      margin: 0px 12px 10px 0;
+      .upper-box {
+        height: 112px;
+        width: 100%;
+        img{
+          width: 112px;
+          height: 112px;
+        }
+      }
+      .lower-box {
+        display: flex;
+        text-align: center;
+        .update-box {
+          color: #00b0ff;
+          width: 50%;
+          height: 50px;
+          line-height: 50px;
+          border: 1px solid #eee;
+          background: #f5f5f5;
+          cursor: pointer;
+          &:hover {
+            background-color: rgb(236, 236, 236);
+            color: skyblue;
+          }
+        }
+        .delete-box {
+          color: #00b0ff;
+          width: 50%;
+          height: 50px;
+          line-height: 50px;
+          border: 1px solid #eee;
+          background: #f5f5f5;
+          cursor: pointer;
+          &:hover {
+            background-color: rgb(236, 236, 236);
+            color: skyblue;
+          }
+        }
+      }
+    }
+
+    //投稿クリックエリアのCSS
+    .label-content{
+      margin-bottom: 10px;
+      width: 620px;
+      .label-box {
+        display: block;
+        border: 1px dashed #ccc;
+        position: relative;
+        background: #f5f5f5;
+        width: 100%;
+        height: 162px;
+        cursor: pointer;
+        &__text-visible {
+          position: absolute;
+          top: 50%;
+          left: 16px;
+          right: 16px;
+          text-align: center;
+          font-size: 13px;
+          line-height: 1.5;
+          font-weight: bold;
+          -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+          pointer-events: none;
+          white-space: pre-wrap;
+          word-wrap: break-word;
+        }
+      }
+    }
+  
+    //file_fieldのcss
+    .hidden-content {
+      .hidden-field {
+        display: none;
+      }
+      .hidden-checkbox {
+        display: none;
       }
     }
   }

@@ -1,0 +1,4 @@
+%li.header__navContentSecond
+  = link_to "#{parent_category.name}", '#'
+  %ul.header__navMenuThird
+    = render partial: "shared/navMenu_third", collection: parent_category.children, as: "child_category"

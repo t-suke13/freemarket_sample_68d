@@ -1,0 +1,1 @@
+json.array! @child_categories, :id, :name

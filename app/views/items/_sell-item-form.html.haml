@@ -3,8 +3,8 @@
     %h2.single-head.bold
       商品の情報を入力
     %hr.si-container__si-box__si-inner__si-underline
-
-    = form_with local: true do |f|
+    = render "devise/shared/error", model: @item
+    = form_with model: @item, local: true do |f|
       .si-container__si-box__si-picture-box.perimeter
         .si-container__si-box__box-frame
           .si-container__si-box__si-photos{name: "photos"}
@@ -14,24 +14,29 @@
               必須
           %p.si-container__si-box__si-inner__si-picture-box__box-frame__upload-text
             最大10枚までアップロードできます
-          .si-container__si-box__si-inner__si-picture-box__box-frame__upload-box
-            .si-container__si-box__si-inner__si-picture-box__box-frame__upload-box__upload-container
-              .si-container__si-box__si-inner__si-picture-box__box-frame__upload-box__upload-container__si-inner-box
-                .si-container__si-box__si-inner__si-picture-box__box-frame__upload-box__upload-container__si-inner-box__si-inner-container
-                  = f.label :image, id: "drop-zone", class: "image-label" do
-                    = f.file_field :image, accept: "image/png,image/jpeg", autocomplete: "off", multiple: "", style: "display:none", tabindex: "-1", type: "file", class: "hidden-field"
-                    %input{accept: "image/png,image/jpeg", autocomplete: "off", multiple: "", style: "display:none", tabindex: "-1", type: "file"}
-              
-                    .si-big-box
-                      .si-big-box__si-icon-box
-                        = image_tag "icon_camera.png", alt: "出品する", class: 'camera-icon'
-                      .si-big-box__si-text-box  
-                        %p.drag-drop
-                          ドラッグアンドドロップ
-                        %p.drag-drop
-                          またはクリックしてファイルをアップロード
+
+            
+          .post__drop__box__container
+            .label-content
+              %label{for: "item_images_attributes_0_image", class: "label-box", id: "label-box--0"}
+                %pre.label-box__text-visible クリックしてファイルをアップロード
+              .hidden-content
+                = f.fields_for :item_images do |i|
+                  = i.file_field :url, name: "item[item_images_attributes][][url]", style: "display:none", class: "hidden-field", id: "img"
+                  %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][0][url]", id: "item_images_attributes_0_image" }
+                  %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][1][url]", id: "item_images_attributes_1_image" }
+                  %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][2][url]", id: "item_images_attributes_2_image" }
+                  %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][3][url]", id: "item_images_attributes_3_image" }
+                  %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][4][url]", id: "item_images_attributes_4_image" }
+                  %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][5][url]", id: "item_images_attributes_5_image" }
+                  %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][6][url]", id: "item_images_attributes_6_image" }
+                  %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][7][url]", id: "item_images_attributes_7_image" }
+                  %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][8][url]", id: "item_images_attributes_8_image" }
+                  %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][9][url]", id: "item_images_attributes_9_image" }
+                  %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][10][url]", id: "item_images_attributes_10_image" }
 
       %hr.si-container__si-box__si-inner__si-underline
+
 
       .si-container__si-box__si-picture-box.perimeter
         .si-container__si-box__box-frame
@@ -41,7 +46,7 @@
             %span.required-display
               必須
           .si-container__si-box__input-container
-            = f.text_field :ItemsName, value: '', placeholder: '商品名（必須 40文字まで)', class:'input-default'
+            = f.text_field :name, placeholder: '商品名（必須 40文字まで)', class:'input-default'
         .si-container__si-box__box-frame.si-top
           .si-container__si-box__si-photos
             %label.si-container__si-box__si-inner__si-picture-box__box-frame__si-photos__si-label
@@ -49,34 +54,24 @@
             %span.required-display
               必須
           .si-container__si-box__input-container
-            = f.text_area :ItemDescription, rows: '5', placeholder: '商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。', class:'text-default'
+            = f.text_area :description, rows: '5', placeholder: '商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。', class:'text-default'
 
       %hr.si-container__si-box__si-inner__si-underline
+
 
       .si-container__si-box__si-picture-box.perimeter.display-box
         %h3.sell-sub-head
           商品の詳細
         .sell-form-box 
-          .si-container__si-box__box-frame
+          .si-container__si-box__box-frame#category-menus
             .si-container__si-box__si-photos
               %label.si-container__si-box__si-inner__si-picture-box__box-frame__si-photos__si-label
                 カテゴリー
               %span.required-display
                 必須
-            .sell-form-box__select-wrap
+            .sell-form-box__select-wrap#parent-category-menu-wrap
               %i.fas.fa-chevron-down
-              = f.select :category, [["---", "1"]],{}, {class: 'selector-category'}
-
-            -# ここから（とりあえずでdisplay: noenをかけています。）
-
-            .sell-form-box__select-wrap.none
-              %i.fas.fa-chevron-down
-              = f.select :category, [["---", "1"]],{}, {class: 'selector-category'}
-            .sell-form-box__select-wrap.none
-              %i.fas.fa-chevron-down
-              = f.select :category, [["---", "1"]],{}, {class: 'selector-category'}
-
-            -# ここまで
+              = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: "---"}, {class: "selector-category", id: "parent-category-menu"}
 
           .si-container__si-box__box-frame.si-top
             .si-container__si-box__si-photos
@@ -86,8 +81,9 @@
                 必須
             .sell-form-box__select-wrap
               %i.fas.fa-chevron-down
-              = f.select :category, [["---", "1"]],{}, {class: 'selector-category'}
+              = f.collection_select :condition_id, Condition.all, :id, :name, {prompt: "--"}, {class: 'selector-category'}
       %hr.si-container__si-box__si-inner__si-underline
+
 
       .si-container__si-box__si-picture-box.perimeter.display-box
         %h3.sell-sub-head
@@ -103,19 +99,19 @@
                 必須
             .sell-form-box__select-wrap
               %i.fas.fa-chevron-down
-              = f.select :category, [["---", "1"]],{}, {class: 'selector-category'}
+              = f.collection_select :shipping_fee_who_id, ShippingFeeWho.all, :id, :name, {prompt: "--"}, {class: 'selector-category'}
         
-              -# ここから（とりあえずでdisplay: noenをかけています。）
+              -# ここから（追加実装用）
 
-          .si-container__si-box__box-frame.si-top.none
-            .si-container__si-box__si-photos
-              %label.si-container__si-box__si-inner__si-picture-box__box-frame__si-photos__si-label
-                発送の方法
-              %span.required-display
-                必須
-            .sell-form-box__select-wrap
-              %i.fas.fa-chevron-down
-              = f.select :category, [["---", "1"]],{}, {class: 'selector-category'}
+          -# .si-container__si-box__box-frame.si-top.none
+          -#   .si-container__si-box__si-photos
+          -#     %label.si-container__si-box__si-inner__si-picture-box__box-frame__si-photos__si-label
+          -#       発送の方法
+          -#     %span.required-display
+          -#       必須
+          -#   .sell-form-box__select-wrap
+          -#     %i.fas.fa-chevron-down
+          -#     = f.select :category, [["---", "1"]],{}, {class: 'selector-category'}
                  
             -# ここまで
 
@@ -127,7 +123,8 @@
                 必須
             .sell-form-box__select-wrap
               %i.fas.fa-chevron-down
-              = f.select :category, [["---", "1"]],{}, {class: 'selector-category'}
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "--"}, {class: 'selector-category'}
+
 
           .si-container__si-box__box-frame.si-top
             .si-container__si-box__si-photos
@@ -137,9 +134,10 @@
                 必須
             .sell-form-box__select-wrap
               %i.fas.fa-chevron-down
-              = f.select :category, [["---", "1"]],{}, {class: 'selector-category'}
+              = f.collection_select :shipping_days_id, ShippingDays.all, :id, :name, {prompt: "--"}, {class: 'selector-category'}
 
       %hr.si-container__si-box__si-inner__si-underline
+
 
       .si-container__si-box__si-picture-box.perimeter.display-box
         %h3.sell-sub-head
@@ -159,18 +157,21 @@
               .sell-form-box__sell-price-input.l-right
                 ¥
                 .sell-form-box__sell-price-input__input-box.l-right
-                  = f.text_field :ItemsPrice, value: '', placeholder: '例）300', class:'input-default input-right'
+                  = f.text_field :price, placeholder: '例）300', class:'input-default input-right'
 
-
-            %li.sell-form-box__price-list.display-box
-              .sell-form-box__price-list__l-left
-                販売手数料 (10%)
-              .l-right -
-            %li.sell-form-box__price-list.display-box.bold
-              .sell-form-box__price-list__l-left-2
-                販売利益
-              .sell-form-box__price-list__l-right-2 -
+          -# ここから（追加実装用）
+            -# %li.sell-form-box__price-list.display-box
+            -#   .sell-form-box__price-list__l-left
+            -#     販売手数料 (10%)
+            -#   .l-right -
+            -# %li.sell-form-box__price-list.display-box.bold
+            -#   .sell-form-box__price-list__l-left-2
+            -#     販売利益
+            -#   .sell-form-box__price-list__l-right-2 -
+          -# ここまで
+          
       %hr.si-container__si-box__si-inner__si-underline
+
 
       .si-container__si-box__si-picture-box.perimeter
         .notes-box
@@ -197,6 +198,6 @@
               = link_to "#", class: "notes-box__lists__list__j-link" do
                 加盟店規約
               に同意したことになります。
-        = f.submit "出品する", class: 'si-sbm-btn'
+        = f.submit "出品する", type: 'submit', class: 'si-sbm-btn'
         = link_to :back, class: "default-btn" do 
           もどる
