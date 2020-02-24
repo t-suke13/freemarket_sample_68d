@@ -1,6 +1,6 @@
 %li.pickUp__content
   = link_to item_path(item.id), class: "pickUp__contentLink" do
-    = image_tag item.item_images[0].url, alt: "item3", class: "pickUp__itemImage"
+    = image_tag item.item_images[0].url.url, alt: "item3", class: "pickUp__itemImage"
   .pickUp__details
     .pickUp__itemDetails
       %h3.pickUp__name= item.name
