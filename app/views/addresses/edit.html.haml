@@ -1,2 +1,47 @@
-%h1 Addresses#edit
-%p Find me in app/views/addresses/edit.html.haml
+.wrapper 
+  = render 'shared/header'
+  .wrapper__main
+    .mp-container
+      = render 'shared/myPageSideBar'
+      .mp-container__mp-content
+        .main__single-container
+          %h2.main__single-container__head 発送元・お届け先住所変更
+          = form_with model: @address, local: true, class: "registar-form" do |f|
+            = render "devise/shared/error_messages", resource: @address
+            .registar-form__content
+              .registar-form__content__box
+                %label.registar-form__content__box__label 郵便番号
+                %span.registar-form__content__box__require 必須
+                = f.text_field :postal_code, placeholder: "例）123-4567", class: "registar-form__content__box--one-field" 
+
+              .registar-form__content__box
+                %label.registar-form__content__box__label 都道府県
+                %span.registar-form__content__box__require 必須
+                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "--", class: "registar-form__content__box--one-field"
+              
+              .registar-form__content__box
+                %label.registar-form__content__box__label 市区町村
+                %span.registar-form__content__box__require 必須
+                = f.text_field :address1, placeholder: "例）東京都渋谷区", class: "registar-form__content__box--one-field" 
+              .registar-form__content__box
+                %label.registar-form__content__box__label 番地
+                %span.registar-form__content__box__require 必須
+                = f.text_field :address2, placeholder: "例）青山1-1-1", class: "registar-form__content__box--one-field" 
+                
+              .registar-form__content__box
+                %label.registar-form__content__box__label 建物名
+                %span.registar-form__content__box__optional 任意
+                = f.text_field :building_name, placeholder: "例）柳ビル 101", class: "registar-form__content__box--one-field" 
+                
+              .registar-form__content__box
+                %label.registar-form__content__box__label  電話番号
+                %span.registar-form__content__box__optional 任意
+                = f.number_field :phone_number, placeholder: "例）08012345678", class: "registar-form__content__box--one-field"  
+                
+              .registar-form__content__submit
+                = f.submit "登録", class: "single-move-button"   
+    = link_to new_item_path, class: 'sell-icon' do
+      = render 'shared/sell-icon'
+
+  = render "/shared/footerFirst"
+  = render "/shared/footerSecond"

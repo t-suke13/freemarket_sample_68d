@@ -1,0 +1,44 @@
+.wrapper 
+  = render 'shared/header'
+  .wrapper__main
+    .mp-container
+      = render 'shared/myPageSideBar'
+      .mp-container__mp-content
+        .main__single-container
+          %h2.main__single-container__head プロフィール編集
+          = form_with model: current_user, local: true, class: "registar-form" do |f|
+            = render "devise/shared/error_messages", resource: current_user
+            .registar-form__content
+              .registar-form__content__box
+                %label.registar-form__content__box__label ニックネーム
+                %span.registar-form__content__box__require 必須
+                = f.text_field :nickname, placeholder: "ニックネーム", class: "registar-form__content__box--one-field" 
+              
+              .registar-form__content__box
+                %label.registar-form__content__box__label  お名前（全角）
+                %span.registar-form__content__box__require 必須
+                .registar-form__content__box--two-field
+                  = f.text_field :last_name, placeholder: "例）山田", class: "two-field-a"  
+                  = f.text_field :first_name, placeholder: "例) 彩", class: "two-field-b"  
+                
+
+              .registar-form__content__box
+                %label.registar-form__content__box__label  フリガナ（全角）
+                %span.registar-form__content__box__require 必須
+                .registar-form__content__box--two-field
+                  = f.text_field :last_furigana, placeholder: "例）ヤマダ", class: "two-field-a"  
+                  = f.text_field :first_furigana, placeholder: "例) アヤ", class: "two-field-b"  
+                
+              .registar-form__content__box
+                %label.registar-form__content__box__label 生年月日
+                %span.registar-form__content__box__require 必須
+                .registar-form__content__box__birthday
+                  != sprintf(f.date_select(:birthday,use_month_numbers:true, prompt:"--", start_year:Time.now.year, end_year:1920, date_separator:'%s'),'年','月')+'日'
+            
+              .registar-form__content__submit
+                = f.submit "登録する", class: "single-move-button"  
+    = link_to new_item_path, class: 'sell-icon' do
+      = render 'shared/sell-icon'
+
+  = render "/shared/footerFirst"
+  = render "/shared/footerSecond"

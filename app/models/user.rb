@@ -16,13 +16,15 @@ class User < ApplicationRecord
             format: {
             with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i,
             message: "は正しく入力してください。"
-          }
-  validates :password,  presence: true,
+          },
+          on: :create
+  validates :password, presence: true,
             length: { minimum: 7 },
             format: {
               with: /\A(?=.*?[a-z])(?=.*?\d)[a-zA-Z\d]+\z/,
               message: "は英字と数字の両方を含めて下さい。"
-            }
+            },
+            on: :create
   validates :first_furigana, :last_furigana, presence: true,
             format: {
               with: /\A[\p{katakana}ー－&&[^ -~｡-ﾟ]]+\z/,

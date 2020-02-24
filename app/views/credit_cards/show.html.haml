@@ -1,0 +1,40 @@
+.wrapper 
+  = render 'shared/header'
+  .wrapper__main
+    .mp-container
+      = render 'shared/myPageSideBar'
+      .mp-container__mp-content
+        .main__single-container
+          %h2.main__single-container__head クレジットカード登録情報
+          .my-credit-body
+            .my-credit-body__content
+              .my-credit-body__content__left
+                .my-credit-body__content__left__row
+                  %span.my-credit-body__content__left__row__label
+                    = "カード番号"
+                  %span.my-credit-body__content__left__row__info
+                    = @card_number
+                .my-credit-body__content__left__row
+                  %span.my-credit-body__content__left__row__label
+                    = "有効期限"
+                  %span.my-credit-body__content__left__row__info
+                    = @exp_month + " / " + @exp_year
+                .my-credit-body__content__left__row
+                  %span.my-credit-body__content__left__row__label
+                    = "名義"
+                  %span.my-credit-body__content__left__row__info
+                    = @card_name
+              .my-credit-body__content__right
+                .my-credit-body__content__right__image
+                  = image_tag @card_brand , alt: "クレジットカード会社"
+            = form_tag(delete_credit_cards_path, method: :post, id: 'delete-form',  name: "inputForm") do
+              %input{ type: "hidden", name: "card_id", value: "" }
+              %button 削除する
+          .main__single-container__foot
+            = link_to "https://www.mercari.com/jp/help_center/category/6/" do
+              %span= "支払い方法について"
+              %i= icon('fas', 'angle-right', class: "right-icon")
+    = link_to new_item_path, class: 'sell-icon' do
+      = render 'shared/sell-icon'
+  = render "/shared/footerFirst"
+  = render "/shared/footerSecond"

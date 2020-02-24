@@ -1,5 +1,4 @@
 = render '/shared/sub_header'
-
 .main-h
   .main-h__buy
     .main-h__buy__head
@@ -8,12 +7,14 @@
       .main-h__buy__item__inner
         .buy-item
           .buy-item__image
+            = image_tag @item_images
           .buy-item__detail
             .buy-item__name
-              %span ワンピース MーＬサイズ
+              %p= @item.name
             .buy-price
-              %span ¥1,000
-              %span.item-shipping-fee    (税込) 送料込み
+              %p= "¥ #{@item.price.to_s(:delimited)}"
+              %p.item-shipping-fee
+                = @item.shipping_fee_who.name
 
     .sub-buy
       .sub-buy__inner
@@ -21,7 +22,8 @@
           .buy-form__price
             .price-pay
               %span.price-pay__label 支払い金額
-              %span.price-pay__cell ¥1,000
+              %span.price-pay__cell
+                = "¥ #{@item.price.to_s(:delimited)}"
 
           .buy-point
             .buy-point__parent
@@ -31,21 +33,48 @@
                 %span.label2 ポイントを使用 (所持ポイント:P0)
 
           .buy-content
-            .buy-content__inner
-              %span.payment 支払い方法
-              =link_to '#' do
-                %p.buy_user-info-text
-                  %i.fa.fa-plus-circle
-                  %span.inner-text 登録してください
-
-          .buy-content2
-            .buy-content2__inner2
-              %span.shipping-addres 配送先
-              =link_to'#',class:"send" do
-                %p.buy_user-info-text2 
-                  %i.fa.fa-plus-circle
-                  %span.inner-text2 登録してください
-          .purchase
-            %button.buy_btn{disabled: "disabled",type: "submit"} 購入する
-
+            .buy-content__title
+              = "支払い方法"
+            .buy-content__card
+              .buy-content__card__left
+                .buy-content__card__left__row
+                  %span.buy-content__card__left__row__label
+                    = "カード番号"
+                  %span.buy-content__card__left__row__info
+                    = @card_number
+                .buy-content__card__left__row
+                  %span.buy-content__card__left__row__label
+                    = "有効期限"
+                  %span.buy-content__card__left__row__info
+                    = @exp_month + " / " + @exp_year
+                .buy-content__card__left__row
+                  %span.buy-content__card__left__row__label
+                    = "名義"
+                  %span.buy-content__card__left__row__info
+                    = @card_name
+              .buy-content__card__right
+                = image_tag @card_brand , alt: "クレジットカード会社"
+            = link_to credit_cards_path, class: "buy-content__edit" do
+              %i.fa.fa-plus-circle
+              = "支払い方法の変更"
+          .buy-content
+            .buy-content__title
+              = "配送先"
+            .buy-content__address
+              .buy-content__address__info
+                = "〒 #{@postal_code}"
+              .buy-content__address__info
+                = @address
+              .buy-content__address__info
+                = "TEL #{@phone_number}"
+            = link_to edit_address_path(current_user.id), class: "buy-content__edit" do
+              %i.fa.fa-plus-circle
+              = "配送先の変更"
+            .purchase
+              - if @item.stock_status == true
+                = form_tag(action: :pay, method: :post) do
+                  %button.buy_btn{type: "submit"}= "購入する"
+              - else
+                = link_to root_path do
+                  .sold-out= "売り切れました"
 = render '/shared/sub_footer'

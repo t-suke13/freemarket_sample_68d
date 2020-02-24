@@ -1,2 +1,38 @@
-%h1 Payments#new
-%p Find me in app/views/payments/new.html.haml
+.main
+  = render 'shared/sub_header'
+  .main__single-container
+    %h2.main__single-container__head クレジットカード登録
+    = form_tag(pay_credit_cards_path, method: :post, id: 'charge-form',  name: "inputForm", class: "registar-form") do
+      .registar-form__content
+        .registar-form__content__box
+          %label.registar-form__content__box__label カード番号
+          %span.registar-form__content__box__require 必須
+          = text_field_tag "number", "", class: "registar-form__content__box--one-field", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
+        .registar-form__content__img
+          - @card_logo.each do | name, img |
+            = image_tag img, alt: name
+        .registar-form__content__box
+          %label.registar-form__content__box__label 有効期限
+          %span.registar-form__content__box__require 必須
+          .registar-form__content__box--two-field
+            = select_tag :exp_month, options_for_select(card_month), type: "text", include_blank: '--'
+            %span.text-month
+              = "月"
+            = select_tag :exp_year, options_for_select(card_year), type: "text", include_blank: '--'
+            %span.text-year
+              = "年"
+        .registar-form__content__box
+          %label.registar-form__content__box__label セキュリティコード
+          %span.registar-form__content__box__require 必須
+          = text_field_tag "cvc", "", class: "registar-form__content__box--one-field", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
+        .registar-form__content__box
+          %label.registar-form__content__box__label 名義
+          %span.registar-form__content__box__optional 任意
+          = text_field_tag "name", "", class: "registar-form__content__box--one-field", placeholder: "半角英字大文字 " , type: "text", id: "card_name"
+        .registar-form__content__select
+          .registar-form__content__select__btn
+            #card_token
+            = submit_tag "登録する", id: "token_submit", class: "register-button"
+          .registar-form__content__select__btn
+            = link_to "スキップ", root_path, class: "skip-button"
+    = render 'shared/sub_footer'

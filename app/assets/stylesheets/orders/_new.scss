@@ -1,18 +1,11 @@
-a {
-  text-decoration: none;
-}
-
 .main-h{
-  height: 722px;
-  background-color: #eeeeee;
+  background-color: #f5f5f5;
   display: flex;
   justify-content: center;  
   
   &__buy{
     width: 700px;
-    height: 722px;
     background-color: $wh;
-    
     &__head{
       width: 700px;
       height: 97px;
@@ -28,65 +21,47 @@ a {
       height: 145px;
       font-size: 14px;
       text-align: center;
-      padding: 32px 16px;
+      padding: 20px 16px;
       border-top: 1px solid #f5f5f5;
-
       &__inner{
+        height: 100%;
         max-width: 343px;
-        height: 80px;
         margin: 0 auto;
         font-size: 14px;
-
         .buy-item{
           width: 343px;
-          height: 80px;
           display: flex;
-
+          align-items: center;
           &__image{
-            width: 80px;
-            height: 80px;
-            min-width: 80px;
-            display: flex;
-            -webkit-box-pack: center;
             justify-content: center;
-            -webkit-box-align: center;
             align-items: center;
-            background-image: url(sample001.jpg);
-            background-size: cover;
+            img {
+              width: 80px;
+              height: 80px;
+              object-fit: cover;
+            }
           }
-
           &__detail{            
-            height: 80px;
             margin-left: 16px;
-
             .buy-item__name{
               color: $sub-font;
-              height: 29px;
-              font-size: 14px;
-              margin: 0;
               padding: 0 0 8px;
-              line-height: 1.5;
+              font-weight: bold;
               text-align: left;
+              p {
+                font-size: 16px;
+              }
             }
-
             .buy-price{
-              color: $sub-font;
-              width: 151.58px;
-              height: 15px;
-              margin: 0;
-              text-align: left;
-              font-size: 15px;
-              font-weight: 600;
-
-
-              .item-shipping-fee{
+              width: 100%;
+              text-align: right;
+              padding-left: 60px;
+              p {
                 color: $sub-font;
-                width: 96px;
-                height: 12px;
+                width: 100%;
                 display: inline-block;
-                font-size: 13px;
-                text-align: center;
-                line-height: 12px;
+                font-size: 14px;
+                padding-bottom: 10px;
               }
             }
           }
@@ -97,15 +72,11 @@ a {
     .sub-buy{
       border-top: 1px solid #f5f5f5;
       padding: 32px 16px 48px 16px;
-
       &__inner{
-        height: 399px;
         max-width: 343px;
         margin: 0 auto;
-
         .buy-form{
           width: 343px;
-          height: 399px;
 
           &__price{
             display: table;
@@ -176,89 +147,88 @@ a {
             }
           }
           .buy-content{
-            display: flex;
-            justify-content: center;
             width: 343px;
-            height: 108px;
-            padding: 32px 0;
-            border-top: 1px solid #f5f5f5;
-
-            &__inner{
-              width: 343px;
-              height: 43px;
-              
-              .payment{
+            padding: 10px 0;
+            &__title {
+              color: #333333;
+              font-size: 18px;
+              font-weight: 600;
+              padding-top: 22px;
+              padding-bottom: 10px;
+              border-top: 1px solid #f5f5f5;
+            }
+            &__card {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              padding-bottom: 10px;
+              &__left {
+                width: 80%;
                 color: $sub-font;
                 font-size: 14px;
-                font-weight: bold;
-              }
-
-              .inner-text{
-
-                &:hover{
-                text-decoration: underline;
+                &__row {
+                  padding-bottom: 5px;
+                  &__label {
+                    display: inline-block;
+                    width: 100px;
+                    text-align: left;
+                  }
+                  &__info {
+                    padding-left: 15px;
+                    border-left: solid 1px $lightgray;
+                  }
                 }
               }
-              .buy_user-info-text{
-                  width: 343px;
-                  height: 21px;
-                  text-align: left;
-                  margin: 8px 0 0;
-                  font-size: 14px;
-                  color: #0099e8;
+              &__right {
+                width: 20%;
+                text-align: center;
               }
             }
-          }
-
-          .buy-content2{
-            display: flex;
-            justify-content: center;
-            width: 343px;
-            height: 108px;
-            padding: 32px 0;
-            border-top: 1px solid #f5f5f5;
-
-            &__inner2{
-              width: 343px;
-              height: 43px;
-              
-              .shipping-addres{
-                font-size: 14px;
-                font-weight: bold;
-              }
-
-              .inner-text2{
-
-                &:hover{
-                text-decoration: underline;
-                }
-              }
-
-              .buy_user-info-text2{
-                width: 343px;
-                height: 21px;
-                text-align: left;
-                margin: 8px 0 0;
-                font-size: 14px;
-                color: #0099e8;
+            &__address {
+              padding-bottom: 10px;
+              &__info {
+                padding-bottom: 5px;
               }
             }
-          }
-
-          .purchase{
-            width: 343px;
-            height: 83px;
-            padding: 32px 0 0;
-
-            .buy_btn{
-              width: 343px;
-              height:50px;
-              border: 1px solid #888;
-              background: #888;
-              color: $wh;
-              background-color: #888888;
+            &__edit {
+              color: #0099e8;
               font-size: 14px;
-              font-weight: bold;
+              &:hover {
+                opacity: .5;
+              }
+            }
+          }
+        }
+
+        .purchase{
+          width: 343px;
+          height: 83px;
+          padding: 32px 0 0;
+
+          .buy_btn{
+            width: 100%;
+            height:50px;
+            color: $wh;
+            background-color: $lightred;
+            font-size: 14px;
+            font-weight: bold;
+            outline: none;
+            &:hover {
+              opacity: .5;
+            }
+          }
+          .sold-out {
+            text-align: center;
+            line-height: 50px;
+            width: 100%;
+            height:50px;
+            color: $wh;
+            background-color: #888;
+            font-size: 14px;
+            font-weight: bold;
+            outline: none;
+            &:hover {
+              opacity: .5;
             }
           }
         }

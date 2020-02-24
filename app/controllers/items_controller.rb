@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show ,:destroy]
 
   def show
-    @item_image = @item.item_images[0].url
+    @item_image = @item.item_images[0].url.url
   end
 
   def new

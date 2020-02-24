@@ -1,0 +1,93 @@
+.my-credit-body {
+  padding: 40px 40px 64px;
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+    &__left {
+      width: 80%;
+      font-size: 18px;
+      &__row {
+        padding: 5px 0;
+        &__label {
+          display: inline-block;
+          width: 120px;
+          text-align: left;
+        }
+        &__info {
+          padding-left: 15px;
+          border-left: solid 1px $lightgray;
+          font-size: 20px;
+        }
+      }
+      padding-bottom: 10px;
+    }
+    &__right {
+      width: 20%;
+    }
+  }
+  #delete-form {
+    padding-top: 30px;
+    text-align: center;
+    button {
+      font-size: 16px;
+      height: 40px;
+      width: 80px;
+      background-color: $wh;
+      color: $lightred;
+      border: solid 1px $lightred;
+      border-radius: 5px;
+      outline: none;
+      &:hover {
+        opacity: .5;
+      }
+    }
+  }
+}
+#exp_month {
+  width: 150px;
+  background-color: $wh;
+  margin-right: 20px;
+  border: 1px solid $lightgray;
+  outline: none;
+  &:focus {
+    border-color: $lightgreen;
+  }
+}
+
+#exp_year {
+  width: 150px;
+  background-color: $wh;
+  margin-right: 20px;
+  border: 1px solid $lightgray;
+  outline: none;
+  &:focus {
+    border-color: $lightgreen;
+  }
+}
+
+.text-month {
+  padding-right: 20px;
+  line-height: 48px;
+}
+
+.text-year {
+  line-height: 48px;
+}
+
+.main__single-container__foot {
+  padding: 32px 48px;
+  border-top: 1px solid #dfdfdf;
+  text-align: right;
+  i {
+    color: $lightgreen;
+  }
+  span {
+    color: $lightgreen;
+  }
+  &:hover {
+    opacity: .5;
+  }
+}

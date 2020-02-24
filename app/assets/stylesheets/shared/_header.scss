@@ -194,6 +194,7 @@
           background-color: $wh;
           visibility: hidden;
           opacity: 0;
+          z-index: 2;
         }
 
           &__userContentSecond {

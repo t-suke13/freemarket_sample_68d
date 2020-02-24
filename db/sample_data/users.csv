@@ -1,6 +1,0 @@
-id,nickname,first_name,last_name,first_furigana,last_furigana,birthday,email,password
-1,yuta_enomoto,優太,榎本,ユウタ,エノモト,2000-01-01,yutaenomoto@test.co.jp,yutaenomoto111
-2,kodai_fujita,航大,藤田,コウダイ,フジタ,2000-01-02,kodaifujita@test.co.jp,kodaifujita111
-3,ayaka_maruyama,彩香,丸山,アヤカ,マルヤマ,2000-01-03,ayakamaruyama@test.co.jp,ayakamaruyama111
-4,kosuke_maekawa,皓輔,前川,コウスケ,マエカワ,2000-01-04,kosukemaekawa@test.co.jp,kosukemaekawa111
-5,taisuke_hosono,泰輔,細野,タイスケ,ホソノ,2000-01-05,taisukehosono@test.co.jp,taisukehosono111

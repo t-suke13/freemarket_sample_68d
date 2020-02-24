@@ -28,8 +28,8 @@ ja:
         nickname: ニックネーム
         first_name: 名前
         last_name: 苗字
-        first_furigana: ふりがな（名前）
-        last_furigana: ふりがな（苗字）
+        first_furigana: フリガナ（名前）
+        last_furigana: フリガナ（苗字）
         birthday: 生年月日
       address:
         postal_code: 郵便番号

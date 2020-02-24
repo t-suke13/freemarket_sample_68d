@@ -1,0 +1,10 @@
+= render '/shared/sub_header'
+.main__single-container
+  .main__single-container__head
+  .main__single-container__frame
+    %h1.main__single-container__frame__buy
+      = "購入が完了しました"
+    = link_to root_path do
+      .main__single-container__frame__root
+        = "トップページに戻る"
+= render '/shared/sub_footer'

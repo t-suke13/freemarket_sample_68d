@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :edit, :update]
 
   def index
-
   end
 
   def show
@@ -15,7 +14,7 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to root_path
+      redirect_to users_path
     else
       render :edit
     end

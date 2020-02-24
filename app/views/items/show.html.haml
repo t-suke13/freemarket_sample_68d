@@ -7,9 +7,8 @@
         %h2.is-main__content__top__item__name
           = @item.name
         .is-main__content__top__item__body
-
           .image-main
-            = image_tag "#{@item_image}",class:'main-photo'
+            = image_tag @item_image, class:'main-photo'
           %ul.item-image-sub_top
             = render partial: "/shared/item_show_images", collection: @item.item_images, as: "item_image"
         
@@ -18,8 +17,16 @@
           .is-main__content__top__item__price__detail
             %span= "(税込み)"
             %span= "送料込み"
-        .is-main__content__top__item__buy
-          =link_to "購入画面に進む", new_order_path
+
+        - if user_signed_in? && current_user.id == @item.user_id
+          .is-main__content__top__item__edit
+            =link_to "商品の編集", edit_item_path(@item), method: :get
+          .is-main__content__top__item__delete
+            =link_to "この商品を削除する",  item_path(@item), method: :delete
+
+        - else 
+          .is-main__content__top__item__buy
+            =link_to "購入画面に進む", item_orders_path(@item.id)
 
         .is-main__content__top__item__header
           = @item.description
@@ -44,7 +51,7 @@
                 %th
                   = "ブランド"
                 %td
-                  = @item.brand.name
+                  = @item.brand.name rescue ""
               %tr
                 %th
                   = "商品の状態"
